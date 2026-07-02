@@ -21,97 +21,117 @@ The system compares the current structural response with a healthy baseline to d
 
 ---
 
-## ✨ Features
+## ⭐ Repository Highlights
 
-- 📡 Real-time vibration monitoring
-- 📈 FFT-based frequency spectrum analysis
-- 🎯 Natural frequency estimation
-- ⚡ Damage Index calculation
-- 📊 Energy distribution across frequency bands
-- 📝 Automatic CSV logging
-- 📉 Live visualization using Matplotlib
-- 🔍 Modal analysis based damage detection
-- 🚨 Healthy / Caution / Damaged status indication
+- Real-time Structural Health Monitoring
+- Modal Analysis based Damage Detection
+- FFT Signal Processing
+- React Web Dashboard
+- Python Backend
+- Computer Vision Crack Detection
+- MySQL Data Logging
+- ESP32 Firmware
 
 ---
 
 ## 🛠 Hardware Used
 
 - ESP32 Development Board
-- MPU6050 Accelerometer & Gyroscope
+- MPU6050 Accelerometer
+- Bridge Prototype
 - USB Cable
-- Bridge Prototype / Test Structure
+- Computer running Python backend
 
 ---
 
 ## 💻 Software Used
 
-- Python 3.x
+### Embedded
+
 - Arduino IDE
+- ESP32 Board Package
+
+### Backend
+
+- Python 3.x
 - NumPy
 - SciPy
 - Matplotlib
 - PySerial
+- Flask
+- MySQL
 
+### Frontend
+
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+  
 ---
 
 ## 📂 Project Structure
 
-```
-├── bridge_monitor.py
-├── AE_plot.py
+```text
+.
 ├── Advanced_Structural_Health_Monitoring.png
-├── shm_analysis_xxxxx.csv
-├── README.md
+├── bridge_monitoring_system
+│   ├── bridge_data/                 # Generated vibration analysis CSV files
+│   ├── bridge_monitor.py            # Main monitoring application
+│   ├── SHM_plot.py                  # Plotting utilities
+│   ├── ESP32/
+│   │   └── SHM_ESP32.ino            # ESP32 firmware
+│   ├── server/
+│   │   ├── main.py                  # Backend server
+│   │   ├── monitor_matplotlib.py    # Real-time monitoring
+│   │   ├── database.sql             # Database schema
+│   │   ├── requirements.txt         # Python dependencies
+│   │   └── test_serial.py           # Serial communication test
+│   └── webapp/
+│       ├── src/
+│       ├── public/
+│       ├── package.json
+│       └── vite.config.js
+│
+├── computer_vision_crack_detector/
+│   ├── input_images/
+│   └── your_script.py
+│
+├── Screenshots/
+│
+├── Circuit_Diagram.jpg
+└── README.md
 ```
 
 ---
 
 ## ⚙️ Working Principle
 
-### 1. Data Acquisition
-
-ESP32 continuously reads vibration data from the MPU6050 sensor and transmits it through the serial port.
-
-↓
-
-### 2. Signal Processing
-
-Python receives the data and performs:
-
-- Windowing (Hamming Window)
-- Fast Fourier Transform (FFT)
-- Natural Frequency Estimation
-
-↓
-
-### 3. Feature Extraction
-
-The following modal parameters are calculated:
-
-- Natural Frequency
-- Damping Estimation
-- Frequency Shift
-- Energy Distribution
-
-↓
-
-### 4. Damage Detection
-
-The extracted features are compared with baseline values to compute a **Damage Index**.
-
-↓
-
-### 5. Visualization
-
-Real-time graphs display:
-
-- Raw vibration signal
-- Frequency spectrum
-- Natural frequency trend
-- Damage index
-- Energy distribution
-- Overall structural health status
+ESP32 + MPU6050
+        │
+        ▼
+Serial Communication
+        │
+        ▼
+Python Backend
+        │
+ ┌──────┼────────┐
+ │      │        │
+ ▼      ▼        ▼
+FFT  Modal Analysis CSV Logging
+ │
+ ▼
+Damage Index
+ │
+ ▼
+Flask API
+ │
+ ▼
+React Dashboard
+ │
+ ▼
+Computer Vision
 
 ---
 
@@ -175,52 +195,103 @@ The result is normalized to:
 
 ---
 
-## ▶️ Running the Project
+# ▶️ Running the Project
 
-### 1. Clone Repository
+## 📋 Prerequisites
+
+- Python 3.10+
+- Arduino IDE
+- Node.js 18+
+- MySQL Server
+- ESP32 Board Package
+- Git
+
+## 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/Advanced-Structural-Health-Monitoring.git
+git clone https://github.com/Rakesh-Bhandari/Structural-Health-Monitoring-System-using-IoT.git
 
-cd Advanced-Structural-Health-Monitoring
+cd Structural-Health-Monitoring-System-using-IoT
 ```
 
 ---
 
-### 2. Install Dependencies
+## 2. Upload ESP32 Firmware
+
+Open
+
+```
+bridge_monitoring_system/ESP32/SHM_ESP32.ino
+```
+
+using Arduino IDE.
+
+Select
+
+- ESP32 Board
+- Correct COM Port
+
+Upload the firmware.
+
+---
+
+## 3. Install Python Dependencies
 
 ```bash
-pip install numpy scipy matplotlib pyserial
+cd bridge_monitoring_system/server
+
+pip install -r requirements.txt
 ```
 
 ---
 
-### 3. Upload ESP32 Firmware
+## 4. Start Backend Server
 
-Upload the Arduino code to ESP32.
+Open Terminal 1
 
-Set the correct serial port.
-
-Example:
-
-```python
-SERIAL_PORT = "COM3"
-```
-
-or
-
-Linux
-
-```python
-SERIAL_PORT="/dev/ttyUSB0"
+```bash
+cd bridge_monitoring_system/server
+python main.py
 ```
 
 ---
 
-### 4. Run
+## 5. Start Monitoring
+
+Open Terminal 2
 
 ```bash
+cd bridge_monitoring_system
 python bridge_monitor.py
+```
+---
+
+## 6. Run Web Dashboard
+
+```bash
+cd bridge_monitoring_system/webapp
+
+npm install
+
+npm run dev
+```
+
+Open
+
+```
+http://localhost:5173
+```
+
+---
+
+## 7. Run Computer Vision Module
+
+```bash
+cd computer_vision_crack_detector
+
+pip install opencv-python numpy
+
+python your_script.py
 ```
 
 ---
@@ -252,17 +323,15 @@ Status : DAMAGED
 
 ---
 
-## 📁 Output Files
+## 📁 Generated Output
 
-The program automatically generates
+The system automatically stores vibration analysis logs in
 
-```
-bridge_data/
-
-    shm_analysis_YYYYMMDD_HHMMSS.csv
+```text
+bridge_monitoring_system/bridge_data/
 ```
 
-The CSV stores
+Each generated CSV fie stores
 
 - Timestamp
 - RMS
@@ -271,6 +340,20 @@ The CSV stores
 - Damage Index
 - Health Status
 - Analysis Mode
+ 
+---
+
+## 🧰 Technologies Used
+
+| Category | Technologies |
+|-----------|--------------|
+| Embedded | ESP32, MPU6050, Arduino IDE |
+| Backend | Python, Flask, NumPy, SciPy |
+| Database | MySQL |
+| Frontend | React, Vite |
+| Data Visualization | Matplotlib |
+| Communication | Serial UART |
+| Computer Vision | Python, OpenCV |
 
 ---
 
@@ -284,45 +367,38 @@ The CSV stores
 - Structural Safety Assessment
 - Predictive Maintenance
 - Research in Modal Analysis
+- Smart Infrastructure Monitoring
+- Digital Twin Systems
+- Civil Engineering Research
 
 ---
 
-## 🚀 Future Improvements
+## 📸 Screenshots
 
-- Wireless IoT Monitoring
-- Cloud Dashboard
-- Machine Learning Based Damage Classification
-- Crack Detection using Computer Vision
-- MQTT Communication
-- Mobile Application
-- Multi-Sensor Fusion
-- Real-time Alert System
-
----
-
-## 📸 Screenshot
+### Dashboard
 
 ![Dashboard](Advanced_Structural_Health_Monitoring.png)
-![Dashboard](Circuit_Diagram.jpg)
-
-📷 **Complete output images are available here:**
-
-👉 **[Screenshots Folder](./Screenshots/)**
-
-
 
 ---
 
-## 👨‍💻 Author
+### Circuit Diagram
 
-**B. Rakeshkumar**
-
-Electronics and Communication Engineering
-
-Shree Devi Institute of Technology
+![Circuit](Circuit_Diagram.jpg)
 
 ---
 
-## 📜 License
+### Project Outputs
 
-This project is released under the MIT License.
+Complete screenshots of the project including
+
+- Web Dashboard
+- Crack Detection
+- Database Logging
+- FFT Graphs
+- Serial Monitor
+- Health Dashboard
+
+are available here:
+
+📂 **[Screenshots Folder](./Screenshots/)**
+
