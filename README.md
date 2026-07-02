@@ -303,6 +303,8 @@ The CSV stores
 ## 📸 Screenshot
 
 ![Dashboard](Advanced_Structural_Health_Monitoring.png)
+![Dashboard](Circuit_Diagram.jpg)
+
 
 ---
 
