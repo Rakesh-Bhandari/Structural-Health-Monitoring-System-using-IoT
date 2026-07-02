@@ -108,31 +108,32 @@ The system compares the current structural response with a healthy baseline to d
 
 ## ⚙️ Working Principle
 
-ESP32 + MPU6050
-        │
-        ▼
-Serial Communication
-        │
-        ▼
-Python Backend
-        │
- ┌──────┼────────┐
- │      │        │
- ▼      ▼        ▼
-FFT  Modal Analysis CSV Logging
- │
- ▼
-Damage Index
- │
- ▼
-Flask API
- │
- ▼
-React Dashboard
- │
- ▼
-Computer Vision
+## ⚙️ Working Principle
 
+```mermaid
+flowchart TD
+    A[ESP32 + MPU6050]
+    B[Serial Communication]
+    C[Python Backend]
+    D[FFT Analysis]
+    E[Modal Analysis]
+    F[CSV Logging]
+    G[Damage Index]
+    H[Flask API]
+    I[React Dashboard]
+    J[Computer Vision]
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    D --> G
+    E --> G
+    G --> H
+    H --> I
+    I --> J
+```
 ---
 
 # 📊 Dashboard
