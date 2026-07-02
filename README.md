@@ -305,6 +305,11 @@ The CSV stores
 ![Dashboard](Advanced_Structural_Health_Monitoring.png)
 ![Dashboard](Circuit_Diagram.jpg)
 
+📷 **Complete output images are available here:**
+
+👉 **[Screenshots Folder](./Screenshots/)**
+
+
 
 ---
 
