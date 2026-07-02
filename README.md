@@ -108,8 +108,6 @@ The system compares the current structural response with a healthy baseline to d
 
 ## ⚙️ Working Principle
 
-## ⚙️ Working Principle
-
 ```mermaid
 flowchart TD
     A[ESP32 + MPU6050]
